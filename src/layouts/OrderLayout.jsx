@@ -7,7 +7,7 @@ const OrderLayout = () => {
     return (
         <>
             <MainNavigation />
-            <main> <Outlet /></main>
+            <main className='py-4'> <Outlet /></main>
             <Footer />
         </>
     )
