@@ -1,13 +1,11 @@
 import React from 'react'
 import './App.css'
+import router from './config/router'
+import { RouterProvider } from 'react-router-dom'
 
 
 const App = () => {
-  return (
-    <h1 class="text-5xl font-barlow font-500">
-      Pizza Order
-    </h1>
-  )
+  return <RouterProvider router={router} future={router.future} />
 }
 
 export default App
