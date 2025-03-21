@@ -1,5 +1,5 @@
 import React from 'react'
-import Size from '../components/order/size'
+import Size from '../components/order/Size';
 import Select from '../components/order/Select'
 import CheckArea from '../components/order/CheckArea'
 import TextArea from '../components/order/TextArea'
