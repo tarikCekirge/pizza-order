@@ -5,7 +5,9 @@ import { RouterProvider } from 'react-router-dom'
 
 
 const App = () => {
-  return <RouterProvider router={router} future={router.future} />
+  return <>
+    <RouterProvider router={router} future={router.future} />
+  </>
 }
 
 export default App

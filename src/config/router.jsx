@@ -14,18 +14,23 @@ const router = createBrowserRouter([
         element: <RootLayout />,
         children: [
             { index: true, element: <HomePage /> },
-            {
-                path: 'order',
-                element: <OrderLayout />,
-                children: [
-                    { index: true, element: <OrderPage /> },
 
-                ]
-            },
-            { path: 'success', element: <SuccessPage /> }
 
         ]
-    }
+    },
+    {
+        path: 'order',
+        element: <OrderLayout />,
+        children: [
+            { index: true, element: <OrderPage /> },
+
+        ]
+    },
+    {
+        path: 'success', element: <RootLayout />,
+        children: [
+            { index: true, element: <SuccessPage /> }]
+    },
 ],
     {
         future: {
