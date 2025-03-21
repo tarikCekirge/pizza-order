@@ -12,6 +12,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout />,
+        breadcrumb: "Anasayfa",
         children: [
             { index: true, element: <HomePage /> },
 
@@ -21,8 +22,9 @@ const router = createBrowserRouter([
     {
         path: 'order',
         element: <OrderLayout />,
+
         children: [
-            { index: true, element: <OrderPage /> },
+            { index: true, element: <OrderPage />, breadcrumb: "Sipariş Oluştur" },
 
         ]
     },

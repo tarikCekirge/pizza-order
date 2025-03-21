@@ -75,3 +75,11 @@
 main {
   @apply flex-1;
 }
+
+a.breadcrumb {
+  @apply text-white font-barlow text-base mr-1;
+}
+
+a.breadcrumb.active {
+  @apply font-700 before:content-['-'] before:mr-1 before:font-500;
+}
