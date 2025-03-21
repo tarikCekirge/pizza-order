@@ -23,7 +23,7 @@ const HomePage = () => {
                     KOD ACIKTIRIR <br />
                     PİZZA, DOYURUR <br />
                 </Leading>
-                <LinkButton to="/success" text={'ACIKTIM'} />
+                <LinkButton to="/order" text={'ACIKTIM'} />
             </Container>
         </section>
     );
