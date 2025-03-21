@@ -1,8 +1,13 @@
 import React from 'react'
+import OrderDetail from '../components/order/OrderDetail'
+import OrderForm from '../blocks/OrderForm'
 
 const OrderPage = () => {
     return (
-        <div>OrderPage</div>
+        <>
+            <OrderDetail />
+            <OrderForm />
+        </>
     )
 }
 
