@@ -77,10 +77,26 @@ main {
   @apply flex-1;
 }
 
+.container {
+  @apply px-6;
+}
+
 a.breadcrumb {
   @apply text-white font-barlow text-base mr-1;
 }
 
 a.breadcrumb.active {
   @apply font-700 before:content-['-'] before:mr-1 before:font-500;
+}
+
+.orderCountArea {
+  @apply grid grid-cols-2 gap-2 md:grid-cols-[2fr_4fr];
+}
+
+.orderCountArea button[type="submit"] {
+  @apply md:col-start-2;
+}
+
+.orderCountArea .info {
+  @apply md:col-start-2 border border-gray-200 rounded-md p-6 col-span-full -order-1 md:order-none space-y-1;
 }
