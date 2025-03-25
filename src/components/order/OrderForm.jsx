@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import axios from 'axios';
 import Radio from '../../UI/Radio';
 import SelectBox from '../../UI/SelectBox';
 import CheckBox from '../../UI/CheckBox';
@@ -10,6 +10,7 @@ import Counter from '../../UI/Counter';
 import pizzaOptions from '../../data/pizzaData';
 import { useNavigate } from 'react-router-dom';
 import PizzaOrderFormSchema from '../../schemas/OrderFormSchema';
+import Input from '../../UI/Input';
 
 const OrderForm = ({ pizzaDetail }) => {
     const navigate = useNavigate();
@@ -26,18 +27,31 @@ const OrderForm = ({ pizzaDetail }) => {
             selectedSize: '',
             selectedCrust: '',
             selectedIngredients: [],
+            customer: '',
             orderNote: '',
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             const formData = {
                 ...values,
                 pizzaCount,
                 pizzaName: pizzaName,
                 totalPrice: calculateTotalPrice(values),
             };
-            console.log('Form Submitted: ', formData);
-            navigate('/success', { state: { order: formData } });
+
+
+            try {
+                const response = await axios.post('https://reqres.in/api/pizza', formData);
+
+                if (response.status === 201 || response.status === 200) {
+                    console.log('Response Data:', response.data);
+                    navigate('/success', { state: { order: response.data } });
+                } else {
+                    console.error('Unexpected response:', response);
+                }
+            } catch (error) {
+                console.error('Error submitting order:', error);
+            }
         },
     });
 
@@ -64,7 +78,6 @@ const OrderForm = ({ pizzaDetail }) => {
     return (
         <div className="container mx-auto max-w-xl py-12">
             <form onSubmit={formik.handleSubmit}>
-                {/* Boyut Seçimi */}
                 <div className="grid grid-cols-2 gap-4 py-6">
                     <div>
                         <h2 className="text-xl font-barlow font-semibold mb-6">
@@ -133,8 +146,20 @@ const OrderForm = ({ pizzaDetail }) => {
                     )}
                 </div>
 
-                {/* Sipariş Notu */}
-                <div>
+                <div className="py-6">
+                    <h2 className="text-xl font-barlow font-semibold mb-6">Adınız</h2>
+                    <Input
+                        name="customer"
+                        value={formik.values.customer}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                    {formik.errors.customer && formik.touched.customer && (
+                        <p className="text-red-500 text-xs">{formik.errors.customer}</p>
+                    )}
+
+                </div>
+                <div className="py-6">
                     <h2 className="text-xl font-barlow font-semibold mb-6">Sipariş Notu</h2>
                     <TextAreaInput
                         name="orderNote"
